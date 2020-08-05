@@ -1,0 +1,16 @@
+<div class="container">
+  <% if @course.errors.any? %>
+      <%= pluralize(@course.errors.count, "error") %>
+    <% @course.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger"> <%= message %> </div>
+    <% end %>
+  <% end %>
+  <%= form_for [@instructor, @course] do |f| %>
+    <div class="form-row">
+      <%= f.label :name, "Course Name: " %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    
+    <%= f.submit "Submit", class: "btn btn-primary"%>
+  <% end %>
+</div>

@@ -1,0 +1,33 @@
+<h1>Students#index</h1>
+<p>Find me in app/views/students/index.html.erb</p>
+
+<div class="container">
+  <%= link_to "Add Student", new_student_path, class: "btn btn-secondary" %>
+  <table class="table mt-4">
+    <tr>
+      <td>id</td>
+      <td>firstname</td>
+      <td>lastname</td>
+      <td>gender</td>
+      <td>email</td>
+      <td>age</td>
+      <td>phone number</td>
+    </tr>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= link_to student.id, student_path(student) %></td>
+        <td><%= student.firstname %></td>
+        <td><%= student.lastname %></td>
+        <td><%= student.gender %></td>
+        <td><%= student.email %></td>
+        <td><%= student.age %></td>
+        <td><%= student.phonenumber %></td>
+        <td>
+          <%= link_to "Edit", edit_student_path(student), class: "btn btn-warning" %>
+
+          <%= link_to "Delete", student_path(student), method: "DELETE", data:{ confirm: "Confirm?"}, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

@@ -1,0 +1,40 @@
+<h1>Students#show</h1>
+<p>Find me in app/views/students/show.html.erb</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h3><%= @student.firstname %> <%= @student.lastname %></h3>
+      <h3><%= @student.gender %></h3>
+      <h3><%= @student.email %></h3>
+      <h3><%= @student.age %></h3>
+      <h3><%= @student.phonenumber %></h3>
+      <%#= link_to "Back to Instructor", instructor_path(@student.instructor_id), class: "btn btn-info" %>
+    </div>
+    <div class="col-md-6">
+      <div>
+        <%= link_to "New Interest", new_student_interest_path(@student), class: "btn btn-secondary" %>
+      </div>
+        <table class="table mt-4">
+          <tr>
+            <td>id</td>
+            <td>interest name</td>
+            <td>action</td>
+          </tr>
+          <% @student.interests.each do |interest| %>
+            <tr>
+              <td>
+                <%= link_to interest.id, student_interest_path(@student.id, interest.id) %>
+              </td>
+              <td><%= interest.name %></td>
+              <td>
+                  <%= link_to "Edit", edit_student_interest_path(@student, interest), class: "btn btn-warning" %>
+              <%= link_to "Delete", student_interest_path(@student, interest), method: "delete", data:{ confirm: "are you sure to delete this interest record?"}, class:"btn btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
